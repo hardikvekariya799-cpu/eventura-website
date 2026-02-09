@@ -236,7 +236,7 @@ function FooterMini() {
 function WhatsAppMini() {
   return (
     <a
-      href="https://wa.me/91XXXXXXXXXX"
+      href="https://wa.me/917622856869"
       target="_blank"
       rel="noreferrer"
       style={S.wa}
