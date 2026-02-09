@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eventura-website-27a4-git-main-hardikvekariya799-cpus-projects.vercel.app/sitemap.xml
