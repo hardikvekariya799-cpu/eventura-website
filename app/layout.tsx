@@ -1,52 +1,29 @@
-// app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
+import React from "react";
 
-export const metadata: Metadata = {
-  title: {
-    default: "Eventura — Events that speak your style",
-    template: "%s | Eventura",
-  },
-  description:
-    "Eventura is a full-service event planning company in Gujarat. Weddings, receptions, corporate events — venues, vendors, decor and full coordination.",
-  metadataBase: new URL("https://eventura-website-27a4-git-main-hardikvekariya799-cpus-projects.vercel.app"),
-  openGraph: {
-    title: "Eventura — Events that speak your style",
-    description:
-      "Full-service event planning in Gujarat — venues, vendors, decor, timelines and flawless execution.",
-    url: "https://eventura-website-27a4-git-main-hardikvekariya799-cpus-projects.vercel.app",
-    siteName: "Eventura",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Eventura — Events that speak your style",
-      },
-    ],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Eventura — Events that speak your style",
-    description:
-      "Full-service event planning in Gujarat — venues, vendors, decor, timelines and flawless execution.",
-    images: ["/og.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+export const metadata = {
+  title: "Eventura — Events that speak your style",
+  description: "Premium event planning in Gujarat. Weddings, venues, decor & full planning by Eventura.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-5FSZKJE0N4";
+
   return (
     <html lang="en">
+      <head>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}', { page_path: window.location.pathname });
+            `,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
