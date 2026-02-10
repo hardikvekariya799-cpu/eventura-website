@@ -35,6 +35,7 @@ export default function CityPage({ params }: { params: { slug: string } }) {
           <Link href="/" style={brand}>
             Eventura
           </Link>
+
           <nav style={{ display: "flex", gap: 10 }}>
             <Link href="/cities" style={btn}>
               All Cities
@@ -49,6 +50,7 @@ export default function CityPage({ params }: { params: { slug: string } }) {
       <main style={{ padding: 16 }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <h1>Event Planner in {city.name}</h1>
+
           <p style={{ opacity: 0.8, lineHeight: 1.8 }}>
             Eventura offers premium event planning services in {city.name}. We handle venue sourcing,
             decor, vendor management and complete on-ground execution.
