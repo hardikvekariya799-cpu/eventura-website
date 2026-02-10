@@ -1,26 +1,25 @@
-/* Eventura — Global Brand Styles (deploy-safe, no tailwind) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Luxury base */
 :root{
   --bg:#07070a;
-  --card: rgba(255,255,255,.06);
-  --border: rgba(255,255,255,.12);
-  --text: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.68);
-
-  /* Brand accent (you can change later) */
-  --accent: #ffffff;
-  --accentText: #000000;
+  --panel:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --gold:#c9a24a;
 }
 
-*{ box-sizing: border-box; }
-html, body{ height:100%; }
+html,body{height:100%;}
 body{
-  margin:0;
-  background: var(--bg);
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(201,162,74,.14), transparent 60%),
+              radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,.07), transparent 55%),
+              var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  letter-spacing: -0.01em;
 }
 
-a{ color: inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
-button{ font-family: inherit; cursor:pointer; }
+*{box-sizing:border-box;}
+a{color:inherit}
