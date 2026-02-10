@@ -18,7 +18,7 @@ export default function HomePage() {
             <Link href="/gallery" style={S.btn}>Gallery</Link>
             <Link href="/cities" style={S.btn}>Cities</Link>
             <Link href="/services" style={S.btn}>Services</Link>
-            <Link href="/ai-planner" style={{ ...S.btn, ...S.btnGold }}>AI Planner</Link>
+            <Link href="/client-ai" style={{ ...S.btn, ...S.btnGold }}>AI Planner</Link>
             <Link href="/book" style={{ ...S.btn, ...S.btnSolid }}>Book</Link>
           </nav>
         </div>
@@ -40,7 +40,7 @@ export default function HomePage() {
               </p>
 
               <div style={S.ctaRow}>
-                <Link href="/ai-planner" style={{ ...S.btn, ...S.btnGold, padding: "12px 16px" }}>
+                <Link href="/client-ai" style={{ ...S.btn, ...S.btnGold, padding: "12px 16px" }}>
                   Try AI Planner
                 </Link>
                 <Link href="/book" style={{ ...S.btn, ...S.btnSolid, padding: "12px 16px" }}>
@@ -120,7 +120,7 @@ export default function HomePage() {
         <section style={S.section}>
           <div style={S.sectionHead}>
             <h2 style={S.h2}>Unique client features</h2>
-            <Link href="/ai-planner" style={S.linkSoft}>Open AI Planner →</Link>
+            <Link href="/client-ai" style={S.linkSoft}>Open AI Planner →</Link>
           </div>
 
           <div style={S.grid}>
@@ -139,7 +139,7 @@ export default function HomePage() {
               <Link href="/about" style={S.linkSoft}>About</Link>
               <Link href="/services" style={S.linkSoft}>Services</Link>
               <Link href="/gallery" style={S.linkSoft}>Gallery</Link>
-              <Link href="/ai-planner" style={S.linkSoft}>AI Planner</Link>
+              <Link href="/client-ai" style={S.linkSoft}>AI Planner</Link>
               <Link href="/book" style={S.linkSoft}>Book</Link>
             </div>
           </div>
