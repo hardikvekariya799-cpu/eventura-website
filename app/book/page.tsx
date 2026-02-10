@@ -1,58 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import emailjs from "emailjs-com";
+import { useState } from "react";
 
 export default function BookPage() {
   const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
 
-  const cfg = useMemo(() => {
-    return {
-      serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-      templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-      publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
-    };
-  }, []);
-
-  const missing = !cfg.serviceId || !cfg.templateId || !cfg.publicKey;
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setErr(null);
-
-    if (missing) {
-      setErr("Email is not configured yet. Add EmailJS keys in Vercel (Production + Preview) and redeploy.");
-      return;
-    }
-
     setLoading(true);
-    try {
-      const form = e.currentTarget;
-      const fd = new FormData(form);
 
-      const templateParams = {
-        name: String(fd.get("name") || ""),
-        phone: String(fd.get("phone") || ""),
-        city: String(fd.get("city") || ""),
-        eventType: String(fd.get("eventType") || ""),
-        startDate: String(fd.get("startDate") || ""),
-        endDate: String(fd.get("endDate") || ""),
-        guests: String(fd.get("guests") || ""),
-        message: String(fd.get("message") || ""),
-      };
+    const fd = new FormData(e.currentTarget);
+    const msg = `
+New Eventura Enquiry
+Name: ${fd.get("name")}
+Phone: ${fd.get("phone")}
+City: ${fd.get("city")}
+Event: ${fd.get("eventType")}
+Start: ${fd.get("startDate")}
+End: ${fd.get("endDate")}
+Guests: ${fd.get("guests")}
+Message: ${fd.get("message")}
+`.trim();
 
-      await emailjs.send(cfg.serviceId, cfg.templateId, templateParams, cfg.publicKey);
-
-      form.reset();
-      setDone(true);
-    } catch {
-      setErr("Failed to send. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    const url = `https://wa.me/917622856869?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+    setLoading(false);
   }
 
   return (
@@ -70,13 +43,7 @@ export default function BookPage() {
       <main style={{ padding: 16 }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <h1>Book a Free Consultation</h1>
-          <p style={{ opacity: .75, lineHeight: 1.7 }}>Fill in the details and we’ll contact you with a shortlist + full planning quote.</p>
-
-          {done && (
-            <div style={{ padding: 12, borderRadius: 12, background: "rgba(0,255,140,.10)", border: "1px solid rgba(0,255,140,.25)" }}>
-              ✅ Request sent successfully. We’ll contact you shortly.
-            </div>
-          )}
+          <p style={{ opacity: .75, lineHeight: 1.7 }}>Fill the form and WhatsApp will open with your enquiry.</p>
 
           <form onSubmit={onSubmit} style={{ marginTop: 14, display: "grid", gap: 10 }}>
             <input name="name" placeholder="Your name" required style={input} />
@@ -96,17 +63,14 @@ export default function BookPage() {
             <input name="guests" placeholder="Guests" style={input} />
             <textarea name="message" placeholder="Any special request?" rows={4} style={{ ...input, height: "auto", paddingTop: 10 }} />
 
-            {err ? <div style={{ padding: 10, borderRadius: 12, background: "rgba(255,70,70,.10)", border: "1px solid rgba(255,70,70,.25)" }}>❌ {err}</div> : null}
-
             <button disabled={loading} style={{ ...btn, ...btnSolid, width: "100%" }}>
-              {loading ? "Sending..." : "Send Request"}
+              {loading ? "Opening WhatsApp..." : "Send on WhatsApp"}
             </button>
           </form>
 
-          <div style={{ marginTop: 14 }}>
-            {/* Optional WhatsApp as extra (working link, no 404) */}
+          <div style={{ marginTop: 12 }}>
             <a href="https://wa.me/917622856869" target="_blank" rel="noreferrer" style={{ color: "white", textDecoration: "underline", opacity: .8 }}>
-              Or message us on WhatsApp
+              Or open WhatsApp directly
             </a>
           </div>
         </div>
