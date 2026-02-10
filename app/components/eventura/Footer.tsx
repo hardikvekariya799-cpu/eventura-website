@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <div className="title">Eventura</div>
             <p className="p">
-              Full-service event planning in Gujarat — venues, vendors, design,
+              Full-service event planning in Gujarat â€” venues, vendors, design,
               logistics, and flawless execution.
             </p>
           </div>
@@ -34,11 +34,11 @@ export default function Footer() {
           <div>
             <div className="title">Get in touch</div>
             <p className="p">
-              Book a free consultation and we’ll send curated venues + a full plan.
+              Book a free consultation and weâ€™ll send curated venues + a full plan.
             </p>
             <div className="small">
               WhatsApp:{" "}
-              <a className="muted" href="https://wa.me/91XXXXXXXXXX">
+              <a className="muted" href="https://wa.me/917622856869XXXXXXXXXX">
                 +91 XXXXXXXXXX
               </a>
             </div>
@@ -47,9 +47,10 @@ export default function Footer() {
 
         <div style={{ marginTop: 18, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,.1)" }}
              className="small">
-          © {new Date().getFullYear()} Eventura. All rights reserved.
+          Â© {new Date().getFullYear()} Eventura. All rights reserved.
         </div>
       </div>
     </div>
   );
 }
+

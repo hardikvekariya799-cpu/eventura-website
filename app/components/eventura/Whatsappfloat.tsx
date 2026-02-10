@@ -1,5 +1,5 @@
-export default function WhatsAppFloat() {
-  const href = "https://wa.me/91XXXXXXXXXX";
+﻿export default function WhatsAppFloat() {
+  const href = "https://wa.me/917622856869XXXXXXXXXX";
   return (
     <a className="wa" href={href} target="_blank" rel="noreferrer">
       <span className="waIcon">
@@ -16,3 +16,4 @@ export default function WhatsAppFloat() {
     </a>
   );
 }
+
