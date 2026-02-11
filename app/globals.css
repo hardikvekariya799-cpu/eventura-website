@@ -7,26 +7,27 @@
    =========================== */
 
 :root {
-  /* Brand palette (change only these 6 if you want different look) */
-  --bg: #f7f8fb;
-  --surface: #ffffff;
-  --surface-2: #f2f4f8;
+  /* 🌸 Pastel Wedding Palette (Soft, Elegant, Premium) */
+  --bg: #fff7f3;           /* soft cream background */
+  --surface: #ffffff;     /* white cards */
+  --surface-2: #fbe9e7;   /* light blush */
 
-  --text: #0f172a;
-  --muted: #5b6476;
+  --text: #3b2f2f;        /* soft dark brown text */
+  --muted: #7a6464;       /* muted text */
 
-  --border: rgba(15, 23, 42, 0.10);
+  --border: rgba(59, 47, 47, 0.12);
 
-  --primary: #2563eb;      /* main blue */
-  --primary-2: #1d4ed8;    /* hover */
-  --accent: #22c55e;       /* optional green accent */
+  --primary: #e11d48;     /* rose pink */
+  --primary-2: #be123c;  /* darker rose hover */
+  --accent: #f59e0b;     /* soft gold accent */
 
-  --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-  --shadow-soft: 0 6px 18px rgba(2, 6, 23, 0.06);
+  --shadow: 0 14px 34px rgba(225, 29, 72, 0.18);
+  --shadow-soft: 0 8px 22px rgba(225, 29, 72, 0.12);
 
-  --radius: 16px;
+  --radius: 18px;
   --radius-sm: 12px;
 }
+
 
 /* Optional: automatic dark mode (nice) */
 @media (prefers-color-scheme: dark) {
