@@ -1,44 +1,54 @@
 // app/page.tsx
-import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
-  const whatsappNumber = "91XXXXXXXXXX"; // TODO: replace with your WhatsApp number (countrycode+number, no +)
+  // WhatsApp format MUST be: countrycode + number, NO "+" sign
+  const whatsappNumber = "917622856869";
   const whatsappText = encodeURIComponent(
     "Hi Eventura! I want to plan an event. Please share packages and availability."
   );
   const waLink = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 
   return (
-    <main>
-      {/* Top Bar */}
-      <header className="topbar">
-        <div className="wrap topbarInner">
-          <a className="brand" href="#top" aria-label="Eventura Home">
-            <span className="logoBox">
-              <Image
-                src="/logo.png"
-                alt="Eventura"
-                width={140}
-                height={56}
-                priority
-                style={{ height: "auto", width: "140px" }}
-              />
-            </span>
-          </a>
+    <div style={S.page}>
+      {/* Header */}
+      <header style={S.header}>
+        <div style={S.headerInner}>
+          <Link href="/" style={S.brand}>
+            <img
+              src="/logo.png"
+              alt="Eventura"
+              width={52}
+              height={52}
+              style={S.logo}
+            />
+            <div>
+              <div style={S.brandTitle}>EVENTURA</div>
+              <div style={S.brandSub}>Events that speak your style</div>
+            </div>
+          </Link>
 
-          <nav className="nav">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
+          <nav style={S.nav}>
+            <Link href="/services" style={S.navLink}>
+              Services
+            </Link>
+            <Link href="/gallery" style={S.navLink}>
+              Gallery
+            </Link>
+            <Link href="/cities" style={S.navLink}>
+              Cities
+            </Link>
+            <Link href="/client-ai" style={{ ...S.navBtn, ...S.navBtnGold }}>
+              AI Planner
+            </Link>
+            <Link href="/book" style={{ ...S.navBtn, ...S.navBtnSolid }}>
+              Book
+            </Link>
           </nav>
 
-          <div className="actions">
-            <a className="btn ghost" href="#contact">
-              Get Quote
-            </a>
-            <a className="btn primary" href={waLink} target="_blank" rel="noreferrer">
+          {/* Mobile CTA (nav hides on small screens) */}
+          <div style={S.mobileCta}>
+            <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.navBtn, ...S.navBtnSolid }}>
               WhatsApp
             </a>
           </div>
@@ -46,903 +56,388 @@ export default function HomePage() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="hero">
-        <div className="wrap heroGrid">
-          <div>
-            <p className="pill">EVENT PLANNING • DECOR • COORDINATION</p>
-            <h1 className="h1">
-              Events that speak your style — planned beautifully, executed smoothly.
-            </h1>
-            <p className="sub">
-              Eventura helps you plan weddings, corporate events, and private celebrations with
-              premium design + stress-free management.
-            </p>
+      <section style={S.hero}>
+        <div style={S.wrap}>
+          <div style={S.heroGrid}>
+            <div>
+              <div style={S.pill}>WEDDINGS • CORPORATE • PRIVATE EVENTS</div>
 
-            <div className="ctaRow">
-              <a className="btn primary" href="#contact">
-                Request a Quote
-              </a>
-              <a className="btn soft" href="#services">
-                Explore Services
-              </a>
-            </div>
+              <h1 style={S.h1}>
+                Clean planning. Premium design. <span style={S.gold}>Stress-free</span> execution.
+              </h1>
 
-            <div className="trustRow">
-              <div className="trustCard">
-                <div className="trustTitle">Fast Response</div>
-                <div className="trustText">We reply within 24 hours</div>
-              </div>
-              <div className="trustCard">
-                <div className="trustTitle">Transparent Pricing</div>
-                <div className="trustText">Clear packages, no surprises</div>
-              </div>
-              <div className="trustCard">
-                <div className="trustTitle">End-to-End</div>
-                <div className="trustText">From planning to execution</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="heroCard">
-            <div className="heroCardTop">
-              <div>
-                <div className="heroCardTitle">Quick Booking</div>
-                <div className="heroCardSub">Tell us your date + city</div>
-              </div>
-              <span className="badge">Available Slots</span>
-            </div>
-
-            <div className="form">
-              <label className="label">
-                Your Name
-                <input className="input" placeholder="Full name" />
-              </label>
-
-              <label className="label">
-                City
-                <input className="input" placeholder="Ahmedabad, Surat, Toronto..." />
-              </label>
-
-              <label className="label">
-                Event Type
-                <select className="input" defaultValue="Wedding">
-                  <option>Wedding</option>
-                  <option>Engagement</option>
-                  <option>Corporate</option>
-                  <option>Birthday / Private</option>
-                  <option>Other</option>
-                </select>
-              </label>
-
-              <label className="label">
-                Date (optional)
-                <input className="input" placeholder="DD/MM/YYYY" />
-              </label>
-
-              <a className="btn primary full" href={waLink} target="_blank" rel="noreferrer">
-                Send on WhatsApp
-              </a>
-
-              <p className="tiny">
-                By messaging, you agree to be contacted about your inquiry.
+              <p style={S.sub}>
+                Eventura creates memorable events with beautiful decor, clear timelines, and smooth coordination.
+                Simple for clients, premium in results.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* About */}
-      <section id="about" className="section">
-        <div className="wrap twoCol">
-          <div className="card pad">
-            <h2 className="h2">About Eventura</h2>
-            <p className="p">
-              We’re an event design & management team focused on clean execution, premium aesthetics,
-              and a client experience that feels easy from day one.
-            </p>
-            <div className="miniGrid">
-              <div className="mini">
-                <div className="miniTitle">Planning</div>
-                <div className="miniText">Timeline, vendors, budgeting</div>
+              <div style={S.ctaRow}>
+                <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnSolid }}>
+                  WhatsApp for Quote
+                </a>
+
+                <Link href="/services" style={{ ...S.btn, ...S.btnGhost }}>
+                  View Services
+                </Link>
+
+                <Link href="/book" style={{ ...S.btn, ...S.btnSoft }}>
+                  Book a Call
+                </Link>
               </div>
-              <div className="mini">
-                <div className="miniTitle">Design</div>
-                <div className="miniText">Theme, decor, experience</div>
-              </div>
-              <div className="mini">
-                <div className="miniTitle">Management</div>
-                <div className="miniText">On-site coordination</div>
-              </div>
-              <div className="mini">
-                <div className="miniTitle">Hospitality</div>
-                <div className="miniText">Guests, logistics, comfort</div>
-              </div>
-            </div>
-          </div>
 
-          <div className="card pad">
-            <h2 className="h2">What clients love</h2>
-            <ul className="list">
-              <li>Simple communication (WhatsApp-first)</li>
-              <li>Clear plan + checklist, no confusion</li>
-              <li>Premium look without chaos</li>
-              <li>Vendor follow-ups handled by us</li>
-            </ul>
-            <div className="divider" />
-            <p className="p">
-              Want to see how it works? Check our process and request a quote.
-            </p>
-            <div className="row">
-              <a className="btn soft" href="#process">
-                Our Process
-              </a>
-              <a className="btn primary" href="#contact">
-                Get Quote
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="section">
-        <div className="wrap">
-          <div className="sectionHead">
-            <h2 className="h2">Services</h2>
-            <p className="p">Choose what you need — we can handle full planning or specific parts.</p>
-          </div>
-
-          <div className="grid3">
-            <article className="card pad">
-              <h3 className="h3">Weddings</h3>
-              <p className="p">Full planning, decor, vendors, timeline, guest experience.</p>
-              <div className="tagRow">
-                <span className="tag">Planning</span>
-                <span className="tag">Decor</span>
-                <span className="tag">Coordination</span>
-              </div>
-            </article>
-
-            <article className="card pad">
-              <h3 className="h3">Corporate Events</h3>
-              <p className="p">Conferences, launches, team events with clean logistics.</p>
-              <div className="tagRow">
-                <span className="tag">AV</span>
-                <span className="tag">Stage</span>
-                <span className="tag">Logistics</span>
-              </div>
-            </article>
-
-            <article className="card pad">
-              <h3 className="h3">Private & Social</h3>
-              <p className="p">Birthdays, anniversaries, intimate parties, proposals.</p>
-              <div className="tagRow">
-                <span className="tag">Themes</span>
-                <span className="tag">Gifting</span>
-                <span className="tag">Hospitality</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery (placeholders) */}
-      <section id="gallery" className="section">
-        <div className="wrap">
-          <div className="sectionHead">
-            <h2 className="h2">Gallery</h2>
-            <p className="p">For now, these are placeholders — we’ll add real photos next.</p>
-          </div>
-
-          <div className="gallery">
-            {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className="gItem" aria-label={`Gallery placeholder ${i + 1}`}>
-                <div className="gTop" />
-                <div className="gBottom">
-                  <div className="gLine" />
-                  <div className="gLine short" />
+              <div style={S.kpis}>
+                <div style={S.kpiCard}>
+                  <div style={S.kpiTitle}>Fast reply</div>
+                  <div style={S.kpiText}>Within 24 hours</div>
+                </div>
+                <div style={S.kpiCard}>
+                  <div style={S.kpiTitle}>Clear packages</div>
+                  <div style={S.kpiText}>No confusion</div>
+                </div>
+                <div style={S.kpiCard}>
+                  <div style={S.kpiTitle}>End-to-end</div>
+                  <div style={S.kpiText}>We handle it all</div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right Card */}
+            <div style={S.heroCard}>
+              <div style={S.heroCardTop}>
+                <div>
+                  <div style={S.heroCardTitle}>Quick Booking</div>
+                  <div style={S.heroCardSub}>Send details on WhatsApp</div>
+                </div>
+                <div style={S.badge}>Available</div>
+              </div>
+
+              <div style={S.form}>
+                <label style={S.label}>
+                  Name
+                  <input style={S.input} placeholder="Your full name" />
+                </label>
+
+                <label style={S.label}>
+                  City
+                  <input style={S.input} placeholder="Ahmedabad, Surat, Toronto..." />
+                </label>
+
+                <label style={S.label}>
+                  Event Type
+                  <select style={S.input} defaultValue="Wedding">
+                    <option>Wedding</option>
+                    <option>Engagement</option>
+                    <option>Corporate</option>
+                    <option>Birthday / Private</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+
+                <label style={S.label}>
+                  Date (optional)
+                  <input style={S.input} placeholder="DD/MM/YYYY" />
+                </label>
+
+                <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnSolid, width: "100%" }}>
+                  Send on WhatsApp
+                </a>
+
+                <div style={S.note}>
+                  Tip: message your budget range + guest count for faster quotes.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Sections */}
+      <section style={S.section}>
+        <div style={S.wrap}>
+          <div style={S.sectionHead}>
+            <h2 style={S.h2}>Services</h2>
+            <p style={S.p}>Choose what you need — full planning or only decor/coordination.</p>
           </div>
 
-          <div className="row center">
-            <a className="btn soft" href="#contact">
-              Ask for Portfolio
+          <div style={S.grid3}>
+            <div style={S.card}>
+              <div style={S.cardTitle}>Weddings</div>
+              <div style={S.cardText}>Planning, decor, vendors, timeline, guest experience.</div>
+              <div style={S.tags}>
+                <span style={S.tag}>Planning</span>
+                <span style={S.tag}>Decor</span>
+                <span style={S.tag}>Coordination</span>
+              </div>
+            </div>
+
+            <div style={S.card}>
+              <div style={S.cardTitle}>Corporate</div>
+              <div style={S.cardText}>Conferences, launches, team events, logistics.</div>
+              <div style={S.tags}>
+                <span style={S.tag}>AV</span>
+                <span style={S.tag}>Stage</span>
+                <span style={S.tag}>Logistics</span>
+              </div>
+            </div>
+
+            <div style={S.card}>
+              <div style={S.cardTitle}>Private Events</div>
+              <div style={S.cardText}>Birthdays, anniversaries, proposals, intimate parties.</div>
+              <div style={S.tags}>
+                <span style={S.tag}>Themes</span>
+                <span style={S.tag}>Setup</span>
+                <span style={S.tag}>Hospitality</span>
+              </div>
+            </div>
+          </div>
+
+          <div style={S.centerRow}>
+            <Link href="/services" style={{ ...S.btn, ...S.btnSoft }}>
+              See all services
+            </Link>
+            <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnSolid }}>
+              WhatsApp Now
             </a>
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section id="process" className="section">
-        <div className="wrap">
-          <div className="sectionHead">
-            <h2 className="h2">Simple process</h2>
-            <p className="p">Easy steps for clients — no complicated forms.</p>
-          </div>
-
-          <div className="grid4">
-            <div className="card pad">
-              <div className="stepNum">01</div>
-              <h3 className="h3">Share details</h3>
-              <p className="p">Date, city, budget range, style preference.</p>
-            </div>
-            <div className="card pad">
-              <div className="stepNum">02</div>
-              <h3 className="h3">Get proposal</h3>
-              <p className="p">We send packages + timeline + next steps.</p>
-            </div>
-            <div className="card pad">
-              <div className="stepNum">03</div>
-              <h3 className="h3">Planning begins</h3>
-              <p className="p">Vendors, decor, logistics, guest experience.</p>
-            </div>
-            <div className="card pad">
-              <div className="stepNum">04</div>
-              <h3 className="h3">Event day</h3>
-              <p className="p">We coordinate everything while you enjoy.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="section">
-        <div className="wrap contactGrid">
-          <div className="card pad">
-            <h2 className="h2">Contact</h2>
-            <p className="p">
-              Fastest way: WhatsApp. Tell us your event type + city + date.
-            </p>
-            <div className="row">
-              <a className="btn primary" href={waLink} target="_blank" rel="noreferrer">
-                WhatsApp Now
-              </a>
-              <a className="btn ghost" href="mailto:hello@eventura.com">
-                Email Us
-              </a>
-            </div>
-            <div className="divider" />
-            <div className="info">
-              <div>
-                <div className="infoLabel">Phone</div>
-                <div className="infoValue">+91 XXXXX XXXXX</div>
-              </div>
-              <div>
-                <div className="infoLabel">City</div>
-                <div className="infoValue">Ahmedabad • Surat • Destination</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="card pad">
-            <h3 className="h3">Request a quote</h3>
-            <p className="p">We’ll reply within 24 hours.</p>
-            <div className="form">
-              <label className="label">
-                Name
-                <input className="input" placeholder="Your name" />
-              </label>
-              <label className="label">
-                Phone / WhatsApp
-                <input className="input" placeholder="Number" />
-              </label>
-              <label className="label">
-                Message
-                <textarea className="input" rows={4} placeholder="Event type, city, date, budget" />
-              </label>
-              <a className="btn primary full" href={waLink} target="_blank" rel="noreferrer">
-                Send Quote Request on WhatsApp
-              </a>
-              <p className="tiny">
-                (This form is UI-only for now. Next step we can connect it to email/database.)
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="footer">
-        <div className="wrap footerInner">
-          <div className="footBrand">
-            <Image
-              src="/logo.png"
-              alt="Eventura"
-              width={120}
-              height={48}
-              style={{ height: "auto", width: "120px" }}
-            />
-            <div className="footText">Events that speak your style</div>
+      <footer style={S.footer}>
+        <div style={S.wrap}>
+          <div style={S.footerInner}>
+            <div style={S.footerBrand}>
+              <img src="/logo.png" alt="Eventura" width={120} height={48} style={{ height: "auto" }} />
+              <div style={S.footerText}>Events that speak your style</div>
+            </div>
+
+            <div style={S.footerLinks}>
+              <Link href="/services">Services</Link>
+              <Link href="/gallery">Gallery</Link>
+              <Link href="/cities">Cities</Link>
+              <Link href="/book">Book</Link>
+            </div>
+
+            <div style={S.copy}>© {new Date().getFullYear()} Eventura</div>
           </div>
-          <div className="footLinks">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div className="copy">© {new Date().getFullYear()} Eventura</div>
         </div>
       </footer>
-
-      {/* Styles */}
-      <style jsx global>{`
-        :root {
-          --bg: #0f2a2a;       /* deep green (matches your gold logo) */
-          --surface: #0f3533;
-          --surface2: #12403d;
-          --text: #f5f2ea;     /* warm off-white */
-          --muted: rgba(245, 242, 234, 0.75);
-          --border: rgba(245, 242, 234, 0.12);
-
-          --gold: #d7b86a;     /* classy gold */
-          --gold2: #caa552;
-          --cream: #f5f2ea;
-
-          --shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
-          --shadowSoft: 0 10px 28px rgba(0, 0, 0, 0.28);
-          --radius: 18px;
-        }
-
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-        }
-
-        body {
-          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-          background: radial-gradient(900px 480px at 20% -10%, rgba(215, 184, 106, 0.20), transparent 55%),
-            radial-gradient(700px 420px at 95% 10%, rgba(215, 184, 106, 0.14), transparent 55%),
-            var(--bg);
-          color: var(--text);
-          line-height: 1.55;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .wrap {
-          width: 100%;
-          max-width: 1120px;
-          margin: 0 auto;
-          padding: 0 18px;
-        }
-
-        /* Header */
-        .topbar {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: blur(10px);
-          background: rgba(15, 42, 42, 0.75);
-          border-bottom: 1px solid var(--border);
-        }
-
-        .topbarInner {
-          height: 72px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 14px;
-        }
-
-        .brand {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          min-width: 150px;
-        }
-
-        .logoBox {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .nav {
-          display: flex;
-          gap: 18px;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .nav a {
-          color: var(--muted);
-          font-weight: 600;
-          font-size: 14px;
-          padding: 10px 10px;
-          border-radius: 999px;
-          transition: background 0.15s ease, color 0.15s ease;
-        }
-
-        .nav a:hover {
-          color: var(--text);
-          background: rgba(245, 242, 234, 0.08);
-        }
-
-        .actions {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-        }
-
-        /* Buttons */
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          height: 44px;
-          padding: 0 16px;
-          border-radius: 999px;
-          font-weight: 800;
-          letter-spacing: 0.2px;
-          border: 1px solid transparent;
-          transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
-            border-color 0.12s ease;
-          user-select: none;
-        }
-
-        .btn:active {
-          transform: translateY(1px);
-        }
-
-        .btn.primary {
-          background: linear-gradient(180deg, rgba(215, 184, 106, 0.95), rgba(202, 165, 82, 0.95));
-          color: #1a1a1a;
-          box-shadow: 0 16px 30px rgba(215, 184, 106, 0.18);
-        }
-
-        .btn.primary:hover {
-          box-shadow: 0 18px 38px rgba(215, 184, 106, 0.22);
-        }
-
-        .btn.ghost {
-          background: transparent;
-          border-color: var(--border);
-          color: var(--text);
-        }
-
-        .btn.ghost:hover {
-          background: rgba(245, 242, 234, 0.08);
-        }
-
-        .btn.soft {
-          background: rgba(245, 242, 234, 0.10);
-          border-color: rgba(245, 242, 234, 0.14);
-          color: var(--text);
-        }
-
-        .btn.soft:hover {
-          background: rgba(245, 242, 234, 0.14);
-        }
-
-        .btn.full {
-          width: 100%;
-        }
-
-        /* Hero */
-        .hero {
-          padding: 56px 0 22px;
-        }
-
-        .heroGrid {
-          display: grid;
-          grid-template-columns: 1.2fr 0.9fr;
-          gap: 22px;
-          align-items: start;
-        }
-
-        .pill {
-          display: inline-flex;
-          border: 1px solid rgba(245, 242, 234, 0.14);
-          background: rgba(245, 242, 234, 0.08);
-          padding: 10px 14px;
-          border-radius: 999px;
-          font-weight: 800;
-          color: var(--muted);
-          font-size: 12px;
-          letter-spacing: 0.12em;
-          margin: 0 0 14px;
-        }
-
-        .h1 {
-          margin: 0 0 12px;
-          font-size: clamp(30px, 4vw, 48px);
-          line-height: 1.1;
-          letter-spacing: -0.02em;
-        }
-
-        .sub {
-          margin: 0 0 18px;
-          color: var(--muted);
-          font-size: 16px;
-          max-width: 56ch;
-        }
-
-        .ctaRow {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-bottom: 18px;
-        }
-
-        .trustRow {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 10px;
-        }
-
-        .trustCard {
-          border: 1px solid var(--border);
-          background: rgba(15, 53, 51, 0.55);
-          border-radius: var(--radius);
-          padding: 14px;
-          box-shadow: var(--shadowSoft);
-        }
-
-        .trustTitle {
-          font-weight: 900;
-          margin-bottom: 6px;
-        }
-
-        .trustText {
-          color: var(--muted);
-          font-weight: 600;
-          font-size: 13px;
-        }
-
-        /* Cards */
-        .card {
-          border: 1px solid var(--border);
-          background: rgba(15, 53, 51, 0.72);
-          border-radius: var(--radius);
-          box-shadow: var(--shadowSoft);
-        }
-
-        .pad {
-          padding: 18px;
-        }
-
-        .heroCardTop {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 12px;
-          margin-bottom: 12px;
-        }
-
-        .badge {
-          border: 1px solid rgba(215, 184, 106, 0.40);
-          background: rgba(215, 184, 106, 0.14);
-          color: var(--cream);
-          padding: 8px 12px;
-          border-radius: 999px;
-          font-weight: 800;
-          font-size: 12px;
-        }
-
-        .heroCardTitle {
-          font-weight: 900;
-          font-size: 18px;
-        }
-
-        .heroCardSub {
-          color: var(--muted);
-          font-weight: 600;
-          font-size: 13px;
-          margin-top: 4px;
-        }
-
-        .form {
-          display: grid;
-          gap: 12px;
-        }
-
-        .label {
-          display: grid;
-          gap: 8px;
-          font-weight: 800;
-          color: var(--text);
-          font-size: 13px;
-        }
-
-        .input {
-          width: 100%;
-          background: rgba(18, 64, 61, 0.65);
-          border: 1px solid rgba(245, 242, 234, 0.14);
-          border-radius: 14px;
-          padding: 12px 12px;
-          color: var(--text);
-          outline: none;
-          font-weight: 650;
-        }
-
-        .input:focus {
-          border-color: rgba(215, 184, 106, 0.55);
-          box-shadow: 0 0 0 4px rgba(215, 184, 106, 0.14);
-        }
-
-        .tiny {
-          margin: 0;
-          color: rgba(245, 242, 234, 0.65);
-          font-size: 12px;
-        }
-
-        /* Sections */
-        .section {
-          padding: 44px 0;
-        }
-
-        .twoCol {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-
-        .h2 {
-          margin: 0 0 10px;
-          font-size: clamp(22px, 2.6vw, 30px);
-          letter-spacing: -0.01em;
-        }
-
-        .h3 {
-          margin: 0 0 8px;
-          font-size: 18px;
-          font-weight: 900;
-        }
-
-        .p {
-          margin: 0 0 12px;
-          color: var(--muted);
-          font-weight: 600;
-        }
-
-        .miniGrid {
-          margin-top: 14px;
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 10px;
-        }
-
-        .mini {
-          border: 1px solid rgba(245, 242, 234, 0.12);
-          background: rgba(18, 64, 61, 0.50);
-          border-radius: 16px;
-          padding: 12px;
-        }
-
-        .miniTitle {
-          font-weight: 900;
-          margin-bottom: 6px;
-        }
-
-        .miniText {
-          color: var(--muted);
-          font-weight: 650;
-          font-size: 13px;
-        }
-
-        .list {
-          margin: 0;
-          padding-left: 18px;
-          color: var(--muted);
-          font-weight: 650;
-          display: grid;
-          gap: 8px;
-        }
-
-        .divider {
-          height: 1px;
-          background: var(--border);
-          margin: 14px 0;
-        }
-
-        .row {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          align-items: center;
-        }
-
-        .row.center {
-          justify-content: center;
-        }
-
-        .sectionHead {
-          margin-bottom: 12px;
-        }
-
-        .grid3 {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 12px;
-        }
-
-        .tagRow {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          margin-top: 10px;
-        }
-
-        .tag {
-          border: 1px solid rgba(215, 184, 106, 0.28);
-          background: rgba(215, 184, 106, 0.12);
-          padding: 8px 10px;
-          border-radius: 999px;
-          font-weight: 800;
-          font-size: 12px;
-          color: var(--cream);
-        }
-
-        /* Gallery placeholders */
-        .gallery {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 12px;
-          margin-top: 12px;
-        }
-
-        .gItem {
-          border: 1px solid var(--border);
-          border-radius: var(--radius);
-          overflow: hidden;
-          background: rgba(15, 53, 51, 0.72);
-          box-shadow: var(--shadowSoft);
-          min-height: 180px;
-        }
-
-        .gTop {
-          height: 120px;
-          background: radial-gradient(600px 200px at 30% 20%, rgba(215, 184, 106, 0.22), transparent 60%),
-            rgba(18, 64, 61, 0.60);
-        }
-
-        .gBottom {
-          padding: 12px;
-        }
-
-        .gLine {
-          height: 10px;
-          border-radius: 999px;
-          background: rgba(245, 242, 234, 0.14);
-          margin-bottom: 8px;
-        }
-
-        .gLine.short {
-          width: 60%;
-        }
-
-        /* Process */
-        .grid4 {
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: 12px;
-          margin-top: 12px;
-        }
-
-        .stepNum {
-          font-weight: 950;
-          color: rgba(215, 184, 106, 0.95);
-          margin-bottom: 8px;
-          font-size: 14px;
-          letter-spacing: 0.12em;
-        }
-
-        /* Contact */
-        .contactGrid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
-        }
-
-        .info {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
-        }
-
-        .infoLabel {
-          color: rgba(245, 242, 234, 0.65);
-          font-weight: 800;
-          font-size: 12px;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          margin-bottom: 6px;
-        }
-
-        .infoValue {
-          font-weight: 900;
-        }
-
-        /* Footer */
-        .footer {
-          border-top: 1px solid var(--border);
-          background: rgba(15, 42, 42, 0.65);
-          padding: 22px 0;
-        }
-
-        .footerInner {
-          display: grid;
-          grid-template-columns: 1fr auto auto;
-          gap: 14px;
-          align-items: center;
-        }
-
-        .footBrand {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .footText {
-          color: rgba(245, 242, 234, 0.70);
-          font-weight: 700;
-          font-size: 13px;
-        }
-
-        .footLinks {
-          display: flex;
-          gap: 14px;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .footLinks a {
-          color: var(--muted);
-          font-weight: 700;
-          font-size: 13px;
-        }
-
-        .footLinks a:hover {
-          color: var(--text);
-        }
-
-        .copy {
-          color: rgba(245, 242, 234, 0.60);
-          font-weight: 700;
-          font-size: 13px;
-          text-align: right;
-        }
-
-        /* Responsive */
-        @media (max-width: 980px) {
-          .heroGrid {
-            grid-template-columns: 1fr;
-          }
-          .trustRow {
-            grid-template-columns: 1fr;
-          }
-          .grid3 {
-            grid-template-columns: 1fr;
-          }
-          .grid4 {
-            grid-template-columns: 1fr;
-          }
-          .twoCol {
-            grid-template-columns: 1fr;
-          }
-          .contactGrid {
-            grid-template-columns: 1fr;
-          }
-          .nav {
-            display: none;
-          }
-          .footerInner {
-            grid-template-columns: 1fr;
-            text-align: center;
-          }
-          .copy {
-            text-align: center;
-          }
-        }
-      `}</style>
-    </main>
+    </div>
   );
+}
+
+/* ---------- Styles (no CSS file needed) ---------- */
+const S: any = {
+  page: {
+    minHeight: "100vh",
+    background:
+      "radial-gradient(900px 480px at 20% -10%, rgba(215,184,106,0.18), transparent 55%), radial-gradient(700px 420px at 95% 10%, rgba(215,184,106,0.12), transparent 55%), #0f2a2a",
+    color: "#f5f2ea",
+    fontFamily:
+      'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
+  },
+
+  wrap: { maxWidth: 1120, margin: "0 auto", padding: "0 18px" },
+
+  header: {
+    position: "sticky",
+    top: 0,
+    zIndex: 50,
+    backdropFilter: "blur(10px)",
+    background: "rgba(15,42,42,0.75)",
+    borderBottom: "1px solid rgba(245,242,234,0.12)",
+  },
+  headerInner: {
+    height: 74,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 12,
+    maxWidth: 1120,
+    margin: "0 auto",
+    padding: "0 18px",
+  },
+
+  brand: { display: "flex", alignItems: "center", gap: 12, textDecoration: "none", color: "inherit" },
+  logo: { borderRadius: 12, border: "1px solid rgba(245,242,234,0.16)" },
+  brandTitle: { fontWeight: 950, letterSpacing: "0.10em", fontSize: 14 },
+  brandSub: { color: "rgba(245,242,234,0.70)", fontWeight: 700, fontSize: 12, marginTop: 2 },
+
+  nav: { display: "flex", alignItems: "center", gap: 10 },
+  navLink: {
+    color: "rgba(245,242,234,0.75)",
+    fontWeight: 800,
+    fontSize: 13,
+    padding: "10px 10px",
+    borderRadius: 999,
+    textDecoration: "none",
+  },
+  navBtn: {
+    height: 42,
+    display: "inlineFlex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0 14px",
+    borderRadius: 999,
+    fontWeight: 950,
+    fontSize: 13,
+    textDecoration: "none",
+    border: "1px solid transparent",
+    userSelect: "none",
+  },
+  navBtnGold: {
+    background: "rgba(215,184,106,0.14)",
+    borderColor: "rgba(215,184,106,0.28)",
+    color: "#f5f2ea",
+  },
+  navBtnSolid: {
+    background: "linear-gradient(180deg, rgba(215,184,106,0.95), rgba(202,165,82,0.95))",
+    color: "#1a1a1a",
+    boxShadow: "0 16px 30px rgba(215,184,106,0.18)",
+  },
+
+  mobileCta: { display: "none" },
+
+  hero: { padding: "56px 0 18px" },
+  heroGrid: { display: "grid", gridTemplateColumns: "1.2fr 0.9fr", gap: 22, alignItems: "start" },
+
+  pill: {
+    display: "inline-flex",
+    padding: "10px 14px",
+    borderRadius: 999,
+    border: "1px solid rgba(245,242,234,0.14)",
+    background: "rgba(245,242,234,0.08)",
+    fontWeight: 950,
+    letterSpacing: "0.12em",
+    fontSize: 12,
+    color: "rgba(245,242,234,0.75)",
+    marginBottom: 14,
+  },
+
+  h1: { margin: "0 0 12px", fontSize: "clamp(30px, 4vw, 50px)", lineHeight: 1.08, letterSpacing: "-0.02em" },
+  gold: { color: "#d7b86a" },
+  sub: { margin: "0 0 18px", color: "rgba(245,242,234,0.78)", fontWeight: 650, fontSize: 16, maxWidth: 560 },
+
+  ctaRow: { display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 18 },
+
+  btn: {
+    height: 46,
+    padding: "0 16px",
+    borderRadius: 999,
+    fontWeight: 950,
+    textDecoration: "none",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1px solid transparent",
+  },
+  btnSolid: {
+    background: "linear-gradient(180deg, rgba(215,184,106,0.95), rgba(202,165,82,0.95))",
+    color: "#1a1a1a",
+    boxShadow: "0 16px 30px rgba(215,184,106,0.18)",
+  },
+  btnGhost: {
+    background: "transparent",
+    borderColor: "rgba(245,242,234,0.14)",
+    color: "#f5f2ea",
+  },
+  btnSoft: {
+    background: "rgba(245,242,234,0.10)",
+    borderColor: "rgba(245,242,234,0.16)",
+    color: "#f5f2ea",
+  },
+
+  kpis: { display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 },
+  kpiCard: {
+    border: "1px solid rgba(245,242,234,0.12)",
+    background: "rgba(15,53,51,0.55)",
+    borderRadius: 18,
+    padding: 14,
+    boxShadow: "0 10px 28px rgba(0,0,0,0.26)",
+  },
+  kpiTitle: { fontWeight: 950, marginBottom: 6 },
+  kpiText: { color: "rgba(245,242,234,0.75)", fontWeight: 650, fontSize: 13 },
+
+  heroCard: {
+    border: "1px solid rgba(245,242,234,0.12)",
+    background: "rgba(15,53,51,0.72)",
+    borderRadius: 18,
+    boxShadow: "0 12px 32px rgba(0,0,0,0.30)",
+    padding: 18,
+  },
+  heroCardTop: { display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 12 },
+  heroCardTitle: { fontWeight: 950, fontSize: 18 },
+  heroCardSub: { color: "rgba(245,242,234,0.70)", fontWeight: 650, fontSize: 13, marginTop: 4 },
+  badge: {
+    borderRadius: 999,
+    padding: "8px 12px",
+    border: "1px solid rgba(215,184,106,0.40)",
+    background: "rgba(215,184,106,0.14)",
+    fontWeight: 950,
+    fontSize: 12,
+    color: "#f5f2ea",
+    height: "fit-content",
+  },
+
+  form: { display: "grid", gap: 12 },
+  label: { display: "grid", gap: 8, fontWeight: 900, fontSize: 13 },
+  input: {
+    width: "100%",
+    background: "rgba(18,64,61,0.65)",
+    border: "1px solid rgba(245,242,234,0.14)",
+    borderRadius: 14,
+    padding: "12px 12px",
+    color: "#f5f2ea",
+    outline: "none",
+    fontWeight: 650,
+  },
+  note: { color: "rgba(245,242,234,0.65)", fontWeight: 650, fontSize: 12 },
+
+  section: { padding: "44px 0" },
+  sectionHead: { marginBottom: 12 },
+  h2: { margin: "0 0 8px", fontSize: "clamp(22px, 2.6vw, 30px)", letterSpacing: "-0.01em" },
+  p: { margin: 0, color: "rgba(245,242,234,0.75)", fontWeight: 650 },
+
+  grid3: { display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 12 },
+  card: {
+    border: "1px solid rgba(245,242,234,0.12)",
+    background: "rgba(15,53,51,0.60)",
+    borderRadius: 18,
+    padding: 18,
+    boxShadow: "0 10px 28px rgba(0,0,0,0.24)",
+  },
+  cardTitle: { fontWeight: 950, fontSize: 18, marginBottom: 8 },
+  cardText: { color: "rgba(245,242,234,0.75)", fontWeight: 650, marginBottom: 12 },
+  tags: { display: "flex", gap: 8, flexWrap: "wrap" },
+  tag: {
+    borderRadius: 999,
+    padding: "8px 10px",
+    border: "1px solid rgba(215,184,106,0.26)",
+    background: "rgba(215,184,106,0.12)",
+    fontWeight: 900,
+    fontSize: 12,
+  },
+
+  centerRow: { display: "flex", gap: 10, justifyContent: "center", marginTop: 16, flexWrap: "wrap" },
+
+  footer: {
+    borderTop: "1px solid rgba(245,242,234,0.12)",
+    background: "rgba(15,42,42,0.65)",
+    padding: "22px 0",
+  },
+  footerInner: {
+    display: "grid",
+    gridTemplateColumns: "1fr auto auto",
+    gap: 14,
+    alignItems: "center",
+  },
+  footerBrand: { display: "flex", flexDirection: "column", gap: 8 },
+  footerText: { color: "rgba(245,242,234,0.70)", fontWeight: 700, fontSize: 13 },
+  footerLinks: { display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" },
+  copy: { color: "rgba(245,242,234,0.60)", fontWeight: 700, fontSize: 13, textAlign: "right" },
+};
+
+/* Responsive (simple) */
+if (typeof window !== "undefined") {
+  // no-op (keeps file deploy-safe)
 }
