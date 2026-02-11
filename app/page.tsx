@@ -2,7 +2,8 @@
 import Link from "next/link";
 
 export default function HomePage() {
-  const whatsappNumber = "917622856869"; // no "+"
+  // WhatsApp must be countrycode+number WITHOUT "+"
+  const whatsappNumber = "917622856869";
   const whatsappText = encodeURIComponent(
     "Hi Eventura! I want to plan an event. Please share packages and availability."
   );
@@ -60,10 +61,10 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Banner (pastel, premium) */}
+      {/* Hero */}
       <section style={S.banner}>
         <div style={S.bannerInner}>
-          <div style={S.bannerLeft}>
+          <div>
             <div style={S.pill}>WEDDINGS • CORPORATE • SOCIAL EVENTS</div>
             <h1 style={S.h1}>
               Clean planning. Beautiful design. <span style={S.roseText}>Zero stress</span>.
@@ -72,6 +73,7 @@ export default function HomePage() {
               Eventura creates premium events with elegant styling, perfect timelines, and smooth coordination.
               Simple for clients, memorable for everyone.
             </p>
+
             <div style={S.ctaRow}>
               <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnPrimary }}>
                 Get Quote on WhatsApp
@@ -97,62 +99,54 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={S.bannerRight}>
-            <div style={S.quoteCard}>
-              <div style={S.quoteTop}>
-                <div>
-                  <div style={S.quoteTitle}>Quick Booking</div>
-                  <div style={S.quoteSub}>Send details on WhatsApp</div>
-                </div>
-                <div style={S.badge}>Available</div>
+          <div style={S.quoteCard}>
+            <div style={S.quoteTop}>
+              <div>
+                <div style={S.quoteTitle}>Quick Booking</div>
+                <div style={S.quoteSub}>Send details on WhatsApp</div>
               </div>
+              <div style={S.badge}>Available</div>
+            </div>
 
-              <div style={S.form}>
-                <label style={S.label}>
-                  Name
-                  <input style={S.input} placeholder="Your full name" />
-                </label>
+            <div style={S.form}>
+              <label style={S.label}>
+                Name
+                <input style={S.input} placeholder="Your full name" />
+              </label>
 
-                <label style={S.label}>
-                  City
-                  <input style={S.input} placeholder="Ahmedabad, Surat, Toronto..." />
-                </label>
+              <label style={S.label}>
+                City
+                <input style={S.input} placeholder="Ahmedabad, Surat, Toronto..." />
+              </label>
 
-                <label style={S.label}>
-                  Event Type
-                  <select style={S.input} defaultValue="Wedding">
-                    <option>Wedding</option>
-                    <option>Engagement</option>
-                    <option>Corporate</option>
-                    <option>Birthday / Private</option>
-                    <option>Other</option>
-                  </select>
-                </label>
+              <label style={S.label}>
+                Event Type
+                <select style={S.input} defaultValue="Wedding">
+                  <option>Wedding</option>
+                  <option>Engagement</option>
+                  <option>Corporate</option>
+                  <option>Birthday / Private</option>
+                  <option>Other</option>
+                </select>
+              </label>
 
-                <label style={S.label}>
-                  Date (optional)
-                  <input style={S.input} placeholder="DD/MM/YYYY" />
-                </label>
+              <label style={S.label}>
+                Date (optional)
+                <input style={S.input} placeholder="DD/MM/YYYY" />
+              </label>
 
-                <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnPrimary, width: "100%" }}>
-                  Send on WhatsApp
-                </a>
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noreferrer"
+                style={{ ...S.btn, ...S.btnPrimary, width: "100%" }}
+              >
+                Send on WhatsApp
+              </a>
 
-                <div style={S.note}>Tip: include guest count + budget for faster quote.</div>
-              </div>
+              <div style={S.note}>Tip: include guest count + budget for faster quote.</div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section style={S.section}>
-        <div style={S.wrap}>
-          <h2 style={S.h2}>Welcome to Eventura</h2>
-          <p style={S.p}>
-            We focus on a clean client experience: simple communication, clear planning, premium styling, and smooth
-            execution — so you enjoy your day while we coordinate everything.
-          </p>
         </div>
       </section>
 
@@ -207,26 +201,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Gallery with REAL photos from /public/events */}
+      {/* Gallery */}
       <section style={S.section}>
         <div style={S.wrap}>
           <div style={S.sectionHead}>
             <h2 style={S.h2}>Event Gallery</h2>
             <p style={S.p}>
-              Add your photos inside <b>/public/events/</b>. If an image is missing, we show a premium placeholder.
+              Add photos inside <b>/public/events/</b> as 1.jpg ... 9.jpg (or update the list in code).
             </p>
           </div>
 
           <div style={S.gallery}>
             {GALLERY.map((src, i) => (
               <div key={i} style={S.gItem}>
-                {/* Using <img> so no Next.js config needed (deploy-safe) */}
                 <img
                   src={src}
                   alt={`Event photo ${i + 1}`}
                   style={S.gImg}
                   onError={(e) => {
-                    // If file doesn't exist, hide broken image and show placeholder background
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                   }}
                 />
@@ -246,7 +238,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Team preview */}
+      {/* Team */}
       <section style={S.sectionAlt}>
         <div style={S.wrap}>
           <div style={S.sectionHead}>
@@ -286,28 +278,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section style={S.section}>
-        <div style={S.wrap}>
-          <div style={S.contactCard}>
-            <div>
-              <h2 style={{ ...S.h2, marginBottom: 6 }}>Contact</h2>
-              <p style={S.p}>
-                Fastest response: WhatsApp. Share city + date + guest count + budget range.
-              </p>
-            </div>
-            <div style={S.contactBtns}>
-              <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnPrimary }}>
-                WhatsApp +91 76228 56869
-              </a>
-              <Link href="/contact" style={{ ...S.btn, ...S.btnOutline }}>
-                Contact Page
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer style={S.footer}>
         <div style={S.wrapFooter}>
@@ -328,7 +298,7 @@ export default function HomePage() {
   );
 }
 
-/* ---------- Pastel Wedding Styles (clean + premium) ---------- */
+/* ---------- Pastel Wedding Styles ---------- */
 const S: any = {
   page: {
     minHeight: "100vh",
@@ -338,7 +308,6 @@ const S: any = {
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
   },
-
   wrap: { maxWidth: 1120, margin: "0 auto", padding: "0 18px" },
 
   header: {
@@ -386,8 +355,6 @@ const S: any = {
     gap: 18,
     alignItems: "start",
   },
-  bannerLeft: {},
-  bannerRight: {},
 
   pill: {
     display: "inline-flex",
@@ -562,20 +529,6 @@ const S: any = {
 
   centerRow: { display: "flex", gap: 10, justifyContent: "center", marginTop: 16, flexWrap: "wrap" },
 
-  contactCard: {
-    border: "1px solid rgba(59,47,47,0.10)",
-    background: "rgba(255,255,255,0.82)",
-    borderRadius: 22,
-    padding: 18,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 12,
-    flexWrap: "wrap",
-    boxShadow: "0 14px 34px rgba(2,6,23,0.07)",
-  },
-  contactBtns: { display: "flex", gap: 10, flexWrap: "wrap" },
-
   footer: { borderTop: "1px solid rgba(59,47,47,0.10)", background: "rgba(255,247,243,0.85)", padding: "22px 0" },
   wrapFooter: {
     maxWidth: 1120,
@@ -590,4 +543,6 @@ const S: any = {
   footerText: { color: "rgba(59,47,47,0.70)", fontWeight: 700, fontSize: 13 },
   footerLinks: { display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" },
   copy: { color: "rgba(59,47,47,0.60)", fontWeight: 700, fontSize: 13, textAlign: "right" },
+
+  wrapFooterFix: {},
 };
