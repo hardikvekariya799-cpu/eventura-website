@@ -1,3 +1,5 @@
+"use client";
+
 // app/page.tsx
 import Link from "next/link";
 
@@ -219,21 +221,13 @@ export default function HomePage() {
                   alt={`Event photo ${i + 1}`}
                   style={S.gImg}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                    // hide broken image if missing
+                    e.currentTarget.style.display = "none";
                   }}
                 />
                 <div style={S.gOverlay} />
               </div>
             ))}
-          </div>
-
-          <div style={S.centerRow}>
-            <Link href="/gallery" style={{ ...S.btn, ...S.btnSoft }}>
-              Open Full Gallery
-            </Link>
-            <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnPrimary }}>
-              Book a Visit
-            </a>
           </div>
         </div>
       </section>
@@ -255,7 +249,7 @@ export default function HomePage() {
                     alt={m.name}
                     style={S.teamPhoto}
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
+                      e.currentTarget.style.display = "none";
                     }}
                   />
                 </div>
@@ -265,15 +259,6 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div style={S.centerRow}>
-            <Link href="/team" style={{ ...S.btn, ...S.btnOutline }}>
-              View Full Team
-            </Link>
-            <a href={waLink} target="_blank" rel="noreferrer" style={{ ...S.btn, ...S.btnPrimary }}>
-              WhatsApp Now
-            </a>
           </div>
         </div>
       </section>
@@ -527,8 +512,6 @@ const S: any = {
   teamName: { fontWeight: 950, marginBottom: 4 },
   teamRole: { color: "rgba(59,47,47,0.70)", fontWeight: 650, fontSize: 13 },
 
-  centerRow: { display: "flex", gap: 10, justifyContent: "center", marginTop: 16, flexWrap: "wrap" },
-
   footer: { borderTop: "1px solid rgba(59,47,47,0.10)", background: "rgba(255,247,243,0.85)", padding: "22px 0" },
   wrapFooter: {
     maxWidth: 1120,
@@ -543,6 +526,4 @@ const S: any = {
   footerText: { color: "rgba(59,47,47,0.70)", fontWeight: 700, fontSize: 13 },
   footerLinks: { display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" },
   copy: { color: "rgba(59,47,47,0.60)", fontWeight: 700, fontSize: 13, textAlign: "right" },
-
-  wrapFooterFix: {},
 };
